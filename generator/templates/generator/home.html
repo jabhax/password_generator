@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Compiled and minified CSS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+        <style>
+        .content {
+          max-width: 500px;
+          margin: auto;
+        }
+        </style>
+
+    </head>
+
+    <body class='content'>
+        <h1>Password Generator</h1>
+
+        <form action='{% url "password" %}'>
+            <a class='dropdown-trigger btn' data-target='pw_len' name='length'>
+            Password Length
+            <ul id='pw_len' class='dropdown-content'>
+                {% for i in password_lengths %}
+                {% if i == 10 %}
+                <li selected><a value='{{ i }}'>{{ i }}</a></li>
+                {% else %}
+                <li><a value='{{ i }}'>{{ i }}</a></li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+            </a>
+            <br/>
+
+            <!-- Uppercase Switch -->
+            Uppercase
+            <div class="switch">
+                <label>
+                    Off<input type="checkbox" name='uppercase'/>
+                    <span class="lever"></span>On
+                </label>
+            </div>
+
+            <!-- Numbers Switch -->
+            Numbers
+            <div class="switch">
+                <label>
+                    Off<input type="checkbox" name='numbers'/>
+                    <span class="lever"></span>On
+                </label>
+            </div>
+
+            <!-- Special Switch -->
+            Special Characters
+            <div class="switch">
+                <label>
+                    Off<input type="checkbox" name='special'/>
+                    <span class="lever"></span>On
+                </label>
+            </div>
+
+            <!-- Swag Switch -->
+            Swag
+            <div class="switch">
+                <label>
+                    Off<input type="checkbox" name='swag'/>
+                    <span class="lever"></span>On
+                </label>
+            </div>
+
+            <!-- Generate Password Submit Button  -->
+            <button class='waves-effect waves-light btn-large' type='submit' name='generate_password'>Generate <i class='material-icons'>autorenew</i></button>
+        </form>
+        <br/>
+        <a href='{% url "about" %}'>About Page</a>
+        <script type="text/javascript">
+            $('.dropdown-trigger').dropdown();
+        </script>
+    </body>
+</html>
